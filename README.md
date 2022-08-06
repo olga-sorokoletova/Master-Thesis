@@ -16,7 +16,7 @@ cd $MARRTINO_APPS_HOME/docker
 
 **2. In a browser open ```http://localhost``` and follow ```Bringup``` link. Press ```CONNECT```.**
 
-**3. Return to the terminal and run the docker image for the stage simulator as ```docker exec -it stage tmux```. Then in the opened ```tmux``` window execute the desired stage:**.
+**3. Return to the terminal and run the docker image for the ```stage``` simulator as ```docker exec -it stage tmux```. Then in the opened ```tmux``` window execute the desired stage:**.
 
 ```
 cd src/stage_environments/scripts
@@ -24,30 +24,32 @@ python start_simulation.py ER_planfloor
 
 ``` 
 
-**4. Open one more terminal window and run docker image for navigation as ```docker exec -it navigation tmux```.**
+**4. Open one more terminal window and run docker image for navigation as ```docker exec -it navigation tmux a```.**
 
 In a ```tmux``` window's bottom pannel go to:
 
-- 1. ```0:loc``` to start the ```localization```:
+**- 1. ```0:loc``` to start the ```localization```:**
 
 ```
-cd src/marrtino_apps/navigation
-python startloc.py ER_planfloow [<x> <y> <a_deg>]
+cd ../navigation
+python startloc.py ER_planfloor [<x> <y> <a_deg>]
 ```
 
 ```<x> <y> <a_deg>``` are the 0, 1 and 3 coordinates of the robot pose, respectively. See these coordinates in a ```stage``` window.
 
-- 2. ```1:nav``` to start the ```navigation``` itself. For example:
+**- 2. ```1:nav``` to start the ```navigation``` itself. For example:**
 
 ```
+cd ../navigation
 roslaunch move_base.launch
 ```
 
 But also other options are possible.
 
-- 3. ```4:rviz``` to launch ```rviz```:
+**- 3. ```4:rviz``` to launch ```rviz```:**
 
 ```
+cd ../navigation
 rosrun rviz rviz -d nav.rviz
 ```
 
