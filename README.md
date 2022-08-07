@@ -6,6 +6,8 @@ The goal is to implement robots as acting remote interface for physicians at hom
 
 ## Compile and run the project
 
+### Using the Manual Launch
+
 **1. Open terminal, navigate to ```MARRTINO_APPS_HOME/docker```, and start the docker:**
 
 ```
@@ -54,6 +56,26 @@ rosrun rviz rviz -d nav.rviz
 ```
 
 Through ```rviz``` fix ```2D Pose Estimate```, check that the correct map is chosen and then set the navigation goal using ```2D Nav Goal```. Observe the motion in both ```rviz``` and ```stage```.
+
+### Using the Autostart Scripts
+
+**1. The same as before: open terminal, navigate to ```MARRTINO_APPS_HOME/docker```, and start the docker:**
+
+```
+cd $MARRTINO_APPS_HOME/docker
+./start_docker.bash
+
+```
+
+**2. Now navigate to the ```start``` folder and launch authomatic start:**
+
+
+```
+cd ../start
+python3 autostart.py ER_planfloor_new.yaml
+
+```
+Take care of map ```.yaml```, ```.png``` and ```include``` folder be present in the ```$HOME/playground/maps```.
 
 ## Author
 - Olga Sorokoletova - 1937430
