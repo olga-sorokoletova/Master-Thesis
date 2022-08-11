@@ -64,7 +64,6 @@ Through ```rviz``` fix ```2D Pose Estimate```, check that the correct map is cho
 ```
 cd $MARRTINO_APPS_HOME/docker
 ./start_docker.bash
-
 ```
 
 **2. Now navigate to the ```start``` folder and launch authomatic start:**
@@ -73,9 +72,43 @@ cd $MARRTINO_APPS_HOME/docker
 ```
 cd ../start
 python3 autostart.py ER_planfloor_new.yaml
-
 ```
 Take care of map ```.yaml```, ```.png``` and ```include``` folder be present in the ```$HOME/playground/maps```.
+
+## Files
+
+### 1. The semantic map:  [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/map/ER_planfloor_new.yaml).
+It has:
+- **doors**, **indoors** and **outdoors** for the 4 top-right rooms in the map = assumed offices for 4 doctors,
+- **home** = assumed location of the charging station, 
+- **beds** in the corridors (since it's a property of the ED), implemented as boxes,
+- **telecom** = assumed room where telecommunication with a physician at home can be performed,
+- 6 categories of **people** inspired by the map from [here](https://kierantimberlake.com/updates/report-from-the-studio-mapping-jefferson-hospitals-emergency-department/).
+
+### 2. Prototypic database: [providers.csv](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/providers.csv).
+It has three fields:
+- **name** of the doctor (for now, they are just "provider1", ..., "provider4"),
+- **office** of the doctor ("1",..."4" in a correspondence to 4 top-right rooms in the map),
+- **status** of the doctor ("home" = doctor is available in a smart-working mode today, "hospital" = doctor is working in the hospital, "NA" - doctor is not available)
+
+### 3. Script:  [create_nav_cmd.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/create_nav_cmd.py).
+The command to execute this script is: 
+
+```
+python create_nav_cmd.py "provider1"
+
+```
+where instead of ```"provider1"``` can be any name of the doctor who is present in the database.
+
+It checks what is the status of the requested doctor, and:
+- if he is not available => simply informs,
+- otherwise => creates a file [```er_cmd.nav```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/er_cmd.nav) inside the ```marrtino_apps/navigation``` folder to be executed as:
+
+```
+python nav.py er_cmd.nav. 
+
+```
+This file contains just one command: ```gotoLabel(target_location)```, where ```target_location``` can be: 1) "telecom", if status is "home", or 2) outdoors of the doctor's office if status is "hospital". 
 
 ## Author
 - Olga Sorokoletova - 1937430
