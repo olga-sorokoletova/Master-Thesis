@@ -4,6 +4,10 @@ This is the repository devoted to the *Master Thesis*.
 
 The goal is to implement robots as acting remote interface for physicians at home in smart-working mode, to perform diagnostic tasks that do not require high precision manual interactions, and therefore decreasing the workload of physically available operators in critical care wards. 
 
+## Prerequisites
+
+Make sure to have ```marrtino_apps``` and ```stage_environments``` in ```$HOME/src```.
+
 ## Compile and run the project
 
 ### Using the Manual Launch
@@ -15,6 +19,7 @@ cd $MARRTINO_APPS_HOME/docker
 ./start_docker.bash
 
 ```
+As the result, docker containers must start. If it didn't happen, run ```tmux a``` and check ```marrtino up``` tab for the presence of errors.
 
 **2. In a browser open ```http://localhost``` and follow ```Bringup``` link. Press ```CONNECT```.**
 
