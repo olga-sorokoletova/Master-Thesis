@@ -80,6 +80,12 @@ python3 autostart.py ER_start.yaml
 ```
 Take care of map ```.yaml```, ```.png``` and ```include``` folder be present in the ```$HOME/playground/maps```.
 
+To stop the modules inside the containers (but not the containers):
+
+```
+python3 autostart.py ER_start.yaml --kill
+```
+
 ## Files
 
 ### 1. The semantic map:  [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/map/ER_planfloor_new.yaml).
