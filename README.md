@@ -27,7 +27,7 @@ As the result, docker containers must start. If it didn't happen, run ```tmux a`
 
 ```
 cd src/stage_environments/scripts
-python start_simulation.py ER_planfloor
+python start_simulation.py ER_planfloor_new
 
 ``` 
 
