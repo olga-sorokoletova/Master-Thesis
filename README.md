@@ -103,10 +103,11 @@ It has three fields:
 - **status** of the doctor ("home" = doctor is available in a smart-working mode today, "hospital" = doctor is working in the hospital, "NA" - doctor is not available)
 
 ### 3. Script:  [create_nav_cmd.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/create_nav_cmd.py).
-The command to execute this script is: 
+This script is executed outside the containers, and the command to execute this script is: 
 
 ```
-python create_nav_cmd.py "provider1"
+cd ~/playground/
+python3 create_nav_cmd.py "provider1"
 
 ```
 where instead of ```"provider1"``` can be any name of the doctor who is present in the database.
