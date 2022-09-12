@@ -76,7 +76,7 @@ cd $MARRTINO_APPS_HOME/docker
 
 ```
 cd ../start
-python3 autostart.py ER_planfloor_new.yaml
+python3 autostart.py ER_start.yaml
 ```
 Take care of map ```.yaml```, ```.png``` and ```include``` folder be present in the ```$HOME/playground/maps```.
 
