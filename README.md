@@ -42,7 +42,7 @@ cd ../navigation
 python startloc.py ER_planfloor_new [<x> <y> <a_deg>]
 ```
 
-```<x> <y> <a_deg>``` are the 0, 1 and 3 coordinates of the robot pose, respectively. And for a ``ER_planfloor_new``` map their default is ```17 20 180```. Otherwise, see these coordinates in a ```stage``` window.
+```<x> <y> <a_deg>``` are the 0, 1 and 3 coordinates of the robot pose, respectively. And for a ```ER_planfloor_new``` map their default is ```17 20 180```. Otherwise, see these coordinates in a ```stage``` window.
 
 **- 2. ```1:nav``` to start the ```navigation``` itself. For example:**
 
