@@ -35,6 +35,12 @@ Stage consists of ```stage_name.yaml```, ```stage_name.png``` (or another image 
 - ```~/src/marrtino_apps/mapping/maps```
 - ```~/src/stage_environments/maps```
 
+Expected result:
+
+<p align="center">
+  <img src="./icu_mini.png" width="797" height="524"/>
+</p>
+
 To quit the simulation, use:
 
 ```
@@ -98,8 +104,9 @@ python3 autostart.py ER_start.yaml --kill
 
 ## Files
 
-### 1. The semantic map:  [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/map/ER_planfloor_new.yaml).
-It has:
+### 1. The semantic maps:  for the Emergency Department floor - [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new.yaml), for the ICU (Intensive Care Unit) - [ICU.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU.yaml) and [sample_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/sample_new.yaml).
+
+Semantic information:
 - **doors**, **indoors** and **outdoors** for the 4 top-right rooms in the map = assumed offices for 4 doctors,
 - **home** = assumed location of the charging station, 
 - **beds** in the corridors (since it's a property of the ED), implemented as boxes,
