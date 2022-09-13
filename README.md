@@ -30,6 +30,16 @@ cd src/stage_environments/scripts
 python start_simulation.py ER_planfloor_new
 
 ``` 
+Stage consists of ```stage_name.yaml```, ```stage_name.png``` (or another image extension) and ```include``` folder. Relevant locations to store these files are:
+- ```~/playground/maps```
+- ```~/src/marrtino_apps/mapping/maps```
+- ```~/src/stage_environments/maps```
+
+To quit the simulation, use:
+
+```
+rosrun stage_environments quit.sh
+```
 
 **4. Open one more terminal window and run docker image for navigation as ```docker exec -it navigation tmux a```.**
 
