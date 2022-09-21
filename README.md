@@ -8,6 +8,12 @@ The goal is to implement robots as acting remote interface for physicians at hom
 
 Make sure to have ```marrtino_apps``` and ```stage_environments``` in ```$HOME/src```.
 
+To get up-to-date version, enter cloned repository and execute:
+
+```
+git pull
+```
+
 ## Compile and run the project
 
 ### Using the Manual Launch
