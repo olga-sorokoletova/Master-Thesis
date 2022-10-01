@@ -25,7 +25,11 @@ cd $MARRTINO_APPS_HOME/docker
 ./start_docker.bash
 
 ```
-As the result, docker containers must start. If it didn't happen, run ```tmux a``` and check ```marrtino up``` tab for the presence of errors.
+As the result, docker containers must start as in the image below. If it didn't happen, run ```tmux a``` and check ```marrtino up``` tab for the presence of errors.
+
+<p align="center">
+  <img src="./docker_start.png" width="730" height="184"/>
+</p>
 
 **2. In a browser open ```http://localhost``` and follow ```Bringup``` link. Press ```CONNECT```.**
 
@@ -108,7 +112,9 @@ To stop the modules inside the containers (but not the containers):
 python3 autostart.py ER_start.yaml --kill
 ```
 
-## Files
+## PROGRAMMING MARRTINO
+
+## 1. Semantic navigation 
 
 ### 1. The semantic maps:  for the Emergency Department floor - [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new.yaml), for the ICU (Intensive Care Unit) - [ICU.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU.yaml) and [sample_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/sample_new.yaml).
 
@@ -144,6 +150,55 @@ python nav.py er_cmd.nav.
 
 ```
 This file contains just one command: ```gotoLabel(target_location)```, where ```target_location``` can be: 1) "telecom", if status is "home", or 2) outdoors of the doctor's office if status is "hospital". 
+
+## 2. Getting and setting poses for humans in the stage 
+
+### 1. Using ROS
+
+Display the list of topics in one of the free tabs of navigation container while running navigation:
+```
+rostopic list
+```
+5 topics are being published for each of the humans. For example, for the human named in a semantic map as ```human1``` their names are:
+```
+/human1/base_pose_ground_truth
+/human1/cmd_vel
+/human1/odom
+/human1/setpose
+/human1/stage_say
+```
+To listen to a particular topic, use:
+```
+rostopic echo /topic_name
+
+#or to read just one message
+rostopic echo -n 1 /topic_name
+```
+To know the type of the message, use:
+```
+rostopic type /topic_name
+```
+To publish message to a topic, use publisher:
+```
+rostopic pub /topic_name /topic_type  /message
+```
+To move a human, publish to its ```/cmd_vel``` topic message with a new velocity. For example (use double tab to autocomplete the message structure):
+```
+rostopic pub /human1/cmd_vel geometry_msgs/Twist  '{linear:  {x: 1.0, y: 1.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+```
+As the result, observe the ```human1``` moving forward.
+
+### 2. Using Python
+
+To get the pose of the ```human1```:
+```
+python getpose.py human1
+```
+To set the pose of the ```human1```:
+```
+python setstagepose.py <x_new> <y_new> <a_deg_new> human1
+```
+As the result, ```human1```'s pose is changed accordingly.
 
 ## Author
 - Olga Sorokoletova - 1937430
