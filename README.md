@@ -190,15 +190,25 @@ As the result, observe the ```human1``` moving forward.
 
 ### 2. Using Python
 
-To get the pose of the ```human1```:
+Use one of the free tabs of navigation container while running navigation to execute the scripts, mentioned below.
+
+2.1. To get the pose of the ```human1```:
 ```
 python getpose.py human1
 ```
-To set the pose of the ```human1```:
+2.2. To set the pose of the ```human1```:
 ```
 python setstagepose.py <x_new> <y_new> <a_deg_new> human1
 ```
 As the result, ```human1```'s pose is changed accordingly.
 
-## Author
+2.3. To move human continuously along ```x``` axis using custom script [move_obstacle.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/move_obstacle.py):
+
+```
+python move_obstacle.py human1 <x_human1> <y_human1> <a_deg_human1> <x_new_human1>
+```
+```<x_human1> <y_human1> <a_deg_human1>``` are the initial coordinates of the ``human1`` pose, and ```<x_new_human1>``` is a desired coordinate of the ```human1``` on ```x``` axis.
+
+## Authors
 - Olga Sorokoletova - 1937430
+- Matteo Matera - 1795339
