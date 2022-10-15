@@ -32,26 +32,19 @@ if __name__ == "__main__":
     	sys.exit(0)
     	
     obstacle = sys.argv[1]
-    X_i = sys.argv[2]
-    Y_i = sys.argv[3]
-    Th_deg_i = sys.argv[4]
-    X_d = sys.argv[5]
-    	
-    if X_d < X_i:
-    	print("<X_d> must be greater or equal than <X_i> (provvisory)")
-    	sys.exit(0)
+    X_i = float(sys.argv[2])
+    Y_i = float(sys.argv[3])
+    Th_deg_i = float(sys.argv[4])
+    X_d = float(sys.argv[5])
     
     if sys.argv[1] != '_':
     	print("Set pose for %s" %obstacle)
     	TOPIC_setpose = "/" + obstacle + TOPIC_setpose
     
-    # Initial configuration
-    X = float(X_i)
-    Y = float(Y_i)
-    Th_deg = float(Th_deg_i)
-    
-    # Desired x
-    X_d = float(X_d)
+    # Current configuration
+    X = X_i
+    Y = Y_i
+    Th_deg = Th_deg_i
     
     setpose_pub = rospy.Publisher(TOPIC_setpose, Pose, queue_size=1, latch=True)
     p = Pose()
@@ -72,9 +65,13 @@ if __name__ == "__main__":
     	setpose_pub.publish(p)
     	
     	# Update
-    	X += 0.1
+    	X += 0.2
     	
     	rospy.sleep(1)
+    	
+    # last step
+    p.position.x = X_d
+    setpose_pub.publish(p)
     	
     	
     	

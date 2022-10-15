@@ -1,0 +1,38 @@
+1) Add <mapname>.yaml and <mapname>.png into playground/maps
+
+2) Build the docker container (if needed)
+
+> cd $MARRTINO_APPS_HOME/docker/
+> ./build_docker_cohan.bash
+
+3) Start the docker container
+
+> cd $MARRTINO_APPS_HOME/docker/
+> ./start_docker.bash
+
+4) Start the simulation
+
+> docker exec -it stage tmux
+> cd src/stage_environments/scripts
+> python start_simulation.py <mapname>
+
+5) Open a browser and type localhost:3000 (if vnc enabled)
+
+6) Open another terminal window and start the navigation docker container
+
+> docker exec -it navigation tmux a
+
+[0:loc]
+> cd ../navigation
+> python startloc.py <mapname> <x> <y> <theta>
+where <x>, <y> and <theta> is the initial configuration of the robot.
+
+[1:nav]
+> cd ../navigation
+> roslaunch move_base.launch
+
+[4:rviz]
+> cd ../navigation
+> rosrun rviz rviz -d nav.rviz
+
+7) Set the goal clicking on "2D nav goal"
