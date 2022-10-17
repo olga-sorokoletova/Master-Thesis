@@ -70,16 +70,32 @@ python startloc.py ER_planfloor_new [<x> <y> <a_deg>]
 
 ```<x> <y> <a_deg>``` are the 0, 1 and 3 coordinates of the robot pose, respectively. And for a ```ER_planfloor_new``` map their default is ```17 20 180```. Otherwise, see these coordinates in a ```stage``` window.
 
-**- 2. ```1:nav``` to start the ```navigation``` itself. For example:**
+**- 2. ```2:obst``` to start human tracking.**
+
+Make sure that [```humans_bridge.py```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/stage/humans_bridge.py) is copied to the ```marrtino_apps/stage``` and run:
+
+```
+cd ../stage
+python human_bridge.py nh
+```
+where ```nh``` is a number of humans in the semantic map, e.g. ```12``` for the ```ICU2``` map.
+
+To check that ```/tracked_humans``` topic is being published, run from another tab:
+
+```
+rostopic echo /tracked_humans
+```
+
+**- 3. ```1:nav``` to start the ```navigation``` itself. For example:**
 
 ```
 cd ../navigation
-roslaunch move_base.launch
+roslaunch [move_base.launch | cohan_nav.launch]
 ```
 
-But also other options are possible.
+```cohan_nav.launch``` is a ```move_base``` node for [**Co-operative Human Aware Navigation (CoHAN) Planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner).
 
-**- 3. ```4:rviz``` to launch ```rviz```:**
+**- 4. ```4:rviz``` to launch ```rviz```:**
 
 ```
 cd ../navigation
