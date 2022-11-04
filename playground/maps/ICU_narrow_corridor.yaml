@@ -6,7 +6,7 @@ occupied_thresh: 0.65
 free_thresh: 0.2
 
 # Simulator info
-initposes: [ [5.26, 18.33, -90.16] ]
+initposes: [ [5.42, 16.76, 270] ]
 
 # Semantic map
 home: { gotopose: [ 3.31, 15.90, 0 ] }
@@ -57,13 +57,13 @@ bed20by:  { gotopose: [ 19.35, 3.76, 0 ] }
 
 human1: { type: 'person', pose: [ 16.80, 7.94, 0, 90 ],  body: { color: "red" } }
 human2: { type: 'person', pose: [ 18.77, 15.29, 0, 60 ], body: { color: "blue" } }
-human3: { type: 'person', pose: [ 9.82, 8.97, 0, 0 ], body: { color: "green" } }
-human4: { type: 'person', pose: [ 14.43, 9.32, 0, 90 ], body: { color: "yellow" } }
+human3: { type: 'person', pose: [ 12.40, 8.92, 0, 0 ], body: { color: "green" } }
+human4: { type: 'person', pose: [ 5.42, 7.77, 0, 90 ], body: { color: "yellow" } }
 human5: { type: 'person', pose: [ 12.52, 7.07, 0, 180 ], body: { color: "magenta" } }
 human6: { type: 'person', pose: [ 9.7, 19.89, 0, 30 ], body: { color: "purple" } }
-human7: { type: 'person', pose: [ 5.68, 8.31, 0, 90 ],  body: { color: "red" } }
+human7: { type: 'person', pose: [ 7.47, 9.87, 0, 90 ],  body: { color: "red" } }
 human8: { type: 'person', pose: [ 5.86, 21.64, 0, 60 ], body: { color: "blue" } }
-human9: { type: 'person', pose: [ 4.12, 16.23, 0, 0 ], body: { color: "green" } }
+human9: { type: 'person', pose: [ 3, 13, 0, 0 ], body: { color: "green" } }
 human10: { type: 'person', pose: [ 12.43, 18.02, 0, 90 ], body: { color: "yellow" } }
 human11: { type: 'person', pose: [ 18.77, 17.46, 0, 180 ], body: { color: "magenta" } }
-human12: { type: 'person', pose: [ 6.95, 16.23, 0, 0 ], body: { color: "magenta" } }
+human12: { type: 'person', pose: [ 15.58, 19.10, 0, 0 ], body: { color: "magenta" } }

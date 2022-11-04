@@ -45,6 +45,8 @@ Stage consists of ```stage_name.yaml```, ```stage_name.png``` (or another image 
 - ```~/src/marrtino_apps/mapping/maps```
 - ```~/src/stage_environments/maps```
 
+The full set of maps used for testing is stored in [```maps```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps).
+
 Expected result:
 
 <p align="center">
