@@ -16,14 +16,14 @@ disable_warm_start: True
 shrink_horizon_backup: True
 
 # Robot
-holonomic_robot: true
-max_vel_y: 0.7
-acc_lim_y: 0.3
+holonomic_robot: False # True
+max_vel_y: 0.0 # 0.7
+acc_lim_y: 0.0 # 0.3
 max_vel_x: 0.7
 min_vel_x: 0.02
 max_vel_x_backwards: 0.4
 max_vel_theta: 1.2
-min_vel_theta: 0.1
+min_vel_theta: 0.1 
 acc_lim_x: 0.3
 acc_lim_theta: 0.4
 min_turning_radius: 0.0
@@ -42,16 +42,16 @@ footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"
 human_radius: 0.3
 min_human_dist: 0.4
 max_human_vel_x: 1.3
-max_human_vel_y: 0.4
+max_human_vel_y: 0.0 # 0.4
 nominal_human_vel_x: 1.1
 max_human_vel_x_backwards: 0.01
 max_human_vel_theta: 1.1
 human_acc_lim_x: 0.6
-human_acc_lim_y: 0.3
+human_acc_lim_y: 0.0 # 0.3
 human_acc_lim_theta: 0.8
 use_external_prediction: True
-predict_human_behind_robot: True
-predict_human_goal: False
+predict_human_behind_robot: False # varies
+predict_human_goal: True # varies
 human_robot_ttc_scale_alpha: 1.0
 human_robot_ttcplus_scale_alpha: 1.0
 human_min_samples: 3
@@ -70,15 +70,16 @@ ttcplus_threshold: 5.0
 ttcplus_timer: 1.0
 rel_vel_cost_threshold: 1.5
 visibility_cost_threshold: 2.5
-min_human_robot_dist: 0.6
+min_human_robot_dist: 1.0 # 0.6
 
 # GoalTolerance
-xy_goal_tolerance: 0.2
-yaw_goal_tolerance: 0.1
+xy_goal_tolerance: 0.4 # 0.2
+yaw_goal_tolerance: 0.2 # 0.1
 free_goal_vel: True
 
 # Obstacles
-min_obstacle_dist: 0.3
+min_obstacle_dist: 0.2 # 0.3
+#inflation_dist: 1.2 # new, should be larger than min_obstacle_dist in order to take effect
 include_costmap_obstacles: True
 costmap_obstacles_behind_robot_dist: 0.5
 obstacle_poses_affected: 1

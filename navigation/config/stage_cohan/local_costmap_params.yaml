@@ -1,5 +1,5 @@
 publish_frequency: 5
-update_frequency: 10
+update_frequency: 5
 width: 15.0
 height: 15.0
 resolution: 0.1
@@ -22,4 +22,4 @@ obstacles:
   base_scan_filtered: {data_type: LaserScan, sensor_frame: base_laser_link, expected_update_rate: 0.3, marking: true, clearing: true}
   footprint_clearing_enabled: false
 inflater:
-  inflation_radius: 0.4
+  inflation_radius: 0.3 #0.3
