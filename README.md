@@ -227,6 +227,5 @@ python move_obstacle.py human1 <x_human1> <y_human1> <a_deg_human1> <x_new_human
 ```
 ```<x_human1> <y_human1> <a_deg_human1>``` are the initial coordinates of the ``human1`` pose, and ```<x_new_human1>``` is a desired coordinate of the ```human1``` on ```x``` axis.
 
-## Authors
+## Author
 - Olga Sorokoletova - 1937430
-- Matteo Matera - 1795339
