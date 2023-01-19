@@ -203,13 +203,19 @@ Two alternative options are available:
 
 In both cases ```<map_name>``` is a name of the yaml file forming the semantic map of the corresponding test. 
 
+E.g. to recreate a *Visibility Test: A human in open space*, execute:
+
+```
+python start_simulation.py ICU_visibility_open_space
+```
+
 Stage sources are ```map_name.yaml```, ```map_name.png``` (or another image extension) and ```include``` folder. Relevant locations to store these files are:
 
 - ```~/playground/maps```
 - ```~/src/marrtino_apps/mapping/maps```
 - ```~/src/stage_environments/maps```
 
-The full set of maps used for testing is stored in [```maps```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps).
+The full set of maps used for testing is stored in this reposiory in [```playground/maps```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps).
 
 Expected result with ```ICU``` map:
 
@@ -223,59 +229,64 @@ To quit the simulation, use:
 rosrun stage_environments quit.sh
 ```
 
-## Compile and run the project
+**4. Start modules.**
 
-### Using the Manual Launch
+Each command must be given in a new terminal or in a new ```tmux``` tab.
+To create new ```tmux``` tabs, use the keys ```CTRL-b c```.
 
+**4.1. Start the localization:**
 
-**3. Return to the terminal and run the docker image for the ```stage``` simulator as ```docker exec -it stage tmux```. Then in the opened ```tmux``` window execute the desired stage:**.
+ - From host OS:
+    
+ ```
+ docker exec -it navigation bash -ci "cd \$MARRTINO_APPS_HOME/navigation && python startloc.py <map_name> [<x> <y> <a_deg>]"
+ ```
 
-```
-cd src/stage_environments/scripts
-python start_simulation.py ER_planfloor_new
+ - By accessing the ```navigation``` container: 
+    
+ ```
+ docker exec -it navigation tmux a
+ ```
 
-``` 
-Stage consists of ```stage_name.yaml```, ```stage_name.png``` (or another image extension) and ```include``` folder. Relevant locations to store these files are:
-- ```~/playground/maps```
-- ```~/src/marrtino_apps/mapping/maps```
-- ```~/src/stage_environments/maps```
+ In the opened ```tmux``` window's bottom panel go to ```0:loc``` and execute: 
+    
+ ```
+ cd ../navigation
+ python startloc.py <map_name> [<x> <y> <a_deg>]
+ ```
 
-The full set of maps used for testing is stored in [```maps```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps).
+In both cases  ```<map_name>``` is the same as before, and  ```<x> <y> <a_deg>``` are the 0th, 1st and 3rd map coordinate of the robot's initial pose, respectively. They are printed out in the log of terminal with running ```stage```. When using a ```stage``` simulator, initial map coordinates are retrieved by the ```stage``` ground truth: in this case, it is not necessary to provide them. Otherwise, you need to provide the actual initial pose of the robot for localization.
 
-Expected result:
-
-<p align="center">
-  <img src="./icu_mini.png" width="797" height="524"/>
-</p>
-
-To quit the simulation, use:
-
-```
-rosrun stage_environments quit.sh
-```
-
-**4. Open one more terminal window and run docker image for navigation as ```docker exec -it navigation tmux a```.**
-
-In a ```tmux``` window's bottom pannel go to:
-
-**- 1. ```0:loc``` to start the ```localization```:**
+E.g. for ```ICU_visibility_open_space``` map in ```stage``` simulator, you can use:
 
 ```
-cd ../navigation
-python startloc.py ER_planfloor_new [<x> <y> <a_deg>]
+python startloc.py ICU_visibility_open_space
 ```
 
-```<x> <y> <a_deg>``` are the 0, 1 and 3 coordinates of the robot pose, respectively. And for a ```ER_planfloor_new``` map their default is ```17 20 180```. Otherwise, see these coordinates in a ```stage``` window.
+**4.2. Start the human tracking:**
 
-**- 2. ```2:obst``` to start human tracking.**
+[```stage/humans_bridge.py```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/stage/humans_bridge.py) is responsible execitable.
 
-Make sure that [```humans_bridge.py```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/stage/humans_bridge.py) is copied to the ```marrtino_apps/stage``` and run:
+ - From host OS:
+    
+ ```
+ docker exec -it navigation bash -ci "cd \$MARRTINO_APPS_HOME/stage && python humans_bridge.py <nh>"
+ ```
+
+ - In the ```navigation``` container ```2:obst``` tab: 
+    
+ ```
+ cd ../stage
+ python humans_bridge.py <nh>
+ ```
+ 
+In both cases ```<nh>``` is a number of humans in the semantic map.
+
+E.g. for *Visibility Test: A human in open space* (currently uploaded semantic map has two humans, so for this test comment a line defining one of them in it):
 
 ```
-cd ../stage
-python human_bridge.py nh
+python humans_bridge.py 1
 ```
-where ```nh``` is a number of humans in the semantic map, e.g. ```12``` for the ```ICU2``` map.
 
 To check that ```/tracked_humans``` topic is being published, run from another tab:
 
@@ -283,23 +294,44 @@ To check that ```/tracked_humans``` topic is being published, run from another t
 rostopic echo /tracked_humans
 ```
 
-**- 3. ```1:nav``` to start the ```navigation``` itself. For example:**
+**4.3. Start the ```move_base``` node:**
 
-```
-cd ../navigation
-roslaunch [move_base.launch | cohan_nav.launch]
-```
+ - From host OS:
+    
+ ```
+ docker exec -it navigation bash -ci "cd \$MARRTINO_APPS_HOME/navigation && roslaunch cohan_nav.launch"
+ ```
 
-```cohan_nav.launch``` is a ```move_base``` node for [**Co-operative Human Aware Navigation (CoHAN) Planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner).
+ - In the ```navigation``` container ```1:nav``` tab: 
+    
+ ```
+ cd ../navigation
+ roslaunch [move_base.launch | cohan_nav.launch]
+ ```
+ 
+```cohan_nav.launch``` is an adapted ```move_base``` node for [**Co-operative Human Aware Navigation (CoHAN) Planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner), ```move_base.launch``` is referred in quantitative analysis as Simple Move Base (SMB). You can also use other ```launch``` files here.
 
-**- 4. ```4:rviz``` to launch ```rviz```:**
 
-```
-cd ../navigation
-rosrun rviz rviz -d nav.rviz
-```
+**4.4. Start visualisation in RViz:**
 
-Through ```rviz``` fix ```2D Pose Estimate```, check that the correct map is chosen and then set the navigation goal using ```2D Nav Goal```. Observe the motion in both ```rviz``` and ```stage```.
+ - From host OS:
+    
+ ```
+ docker exec -it navigation bash -ci "cd \$MARRTINO_APPS_HOME/navigation && rosrun rviz rviz -d nav_cohan.rviz"
+ ```
+
+ - In the ```navigation``` container ```4:rviz``` tab: 
+    
+ ```
+ cd ../navigation
+ rosrun rviz rviz -d nav_cohan.rviz
+ ```
+ 
+In RViz fix ```2D Pose Estimate``` and send the navigation goal using ```2D Nav Goal```. Observe the motion in both RViz and ```stage```.
+
+## Compile and run the project
+
+### Using the Manual Launch
 
 ### Using the Autostart Scripts
 
