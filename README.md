@@ -46,6 +46,8 @@ The Docker containers, involved in the integration and testing of CoHAN, are the
 
 The last two containers in the list are related to the computer setup (web server), ```base``` and ```navigation``` are the runtime instances of the ```base``` and ```navigation-cohan``` images, respectively, and ```stage``` is a simulator.
 
+---
+
 ### System Prerequisites
 
 **1. Linux OS.**
@@ -86,6 +88,7 @@ sudo mv docker-compose-Linux-x86_64 docker-compose
 sudo chmod a+x docker-compose
 docker-compose -v
 ```
+---
 
 ### Software Installation
 
@@ -135,6 +138,9 @@ nano system_config.yaml
 ```
 
 If you prefer, set the ```stage``` field ```on``` instead of ```vnc```. This will use the X11 server on your host, instead of VNC through a browser.
+For the ```vnc``` option, GUI is accessible at [```http://localhost:3000```](http://localhost:3000).
+
+---
 
 ### System Start and Stop
 
@@ -145,24 +151,82 @@ cd $MARRTINO_APPS_HOME/docker
 ./start_docker.bash
 ```
 
+Check with ```docker ps``` that docker containers as in the image below are running. If it didn't happen, run ```tmux a``` and look up a ```marrtino up``` tab to see errors.
+
+<p align="center">
+  <img src="./readme imgs/running containers.png" width="907" height="186"/>
+</p>
+
+When containers started, it becomes possible to access them by executing: 
+
+```
+docker exec -it <container_name> tmux [a].
+```
+
+**To stop the system after tests are done, execute:**
+
+```
+cd $MARRTINO_APPS_HOME/docker
+./stop_docker.bash
+```
+
+---
+
+### Navigation Stack Launch
+
+**1. Start the docker.**
+
+**2. If in ```system_config.yaml``` the ```vnc``` is chosen, open ```http://localhost:3000``` in browser, otherwise, open ```http://localhost```, follow ```Bringup``` link and press ```CONNECT```.**
+ 
+**3. Run a stage environment.** 
+
+Two alternative options are available:
+
+- From host OS:
+
+  ```
+  docker exec -it stage bash -ci "roscd stage_environments/scripts && python start_simulation.py <map_name>"
+  ```
+
+- By accessing the ```stage``` container: 
+
+  ```
+  docker exec -it stage tmux
+  ```
+
+  Then in the opened ```tmux``` window navigate to the folder with scripts and execute the stage with the desired map:
+  
+  ```
+  cd src/stage_environments/scripts
+  python start_simulation.py <map_name>
+  ```
+
+In both cases ```<map_name>``` is a name of the yaml file forming the semantic map of the corresponding test. 
+
+Stage sources are ```map_name.yaml```, ```map_name.png``` (or another image extension) and ```include``` folder. Relevant locations to store these files are:
+
+- ```~/playground/maps```
+- ```~/src/marrtino_apps/mapping/maps```
+- ```~/src/stage_environments/maps```
+
+The full set of maps used for testing is stored in [```maps```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps).
+
+Expected result with ```ICU``` map:
+
+<p align="center">
+  <img src="./readme imgs/icu_mini.png" width="797" height="524"/>
+</p>
+
+To quit the simulation, use:
+
+```
+rosrun stage_environments quit.sh
+```
+
 ## Compile and run the project
 
 ### Using the Manual Launch
 
-**1. Open terminal, navigate to ```MARRTINO_APPS_HOME/docker```, and start the docker:**
-
-```
-cd $MARRTINO_APPS_HOME/docker
-./start_docker.bash
-
-```
-As the result, docker containers must start as in the image below. If it didn't happen, run ```tmux a``` and check ```marrtino up``` tab for the presence of errors.
-
-<p align="center">
-  <img src="./docker_start.png" width="730" height="184"/>
-</p>
-
-**2. In a browser open ```http://localhost``` and follow ```Bringup``` link. Press ```CONNECT```.**
 
 **3. Return to the terminal and run the docker image for the ```stage``` simulator as ```docker exec -it stage tmux```. Then in the opened ```tmux``` window execute the desired stage:**.
 
