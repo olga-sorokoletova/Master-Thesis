@@ -48,29 +48,37 @@ The last two containers in the list are related to the computer setup (web serve
 
 ### System Prerequisites
 
-1. **Linux OS**.
+**1. Linux OS.**
 
-2. **Python** and **tmux**:
+**2. Python and tmux**:
+
 ```
 sudo apt install python tmux python3-yaml
 ```
 
-3. **Docker engine** (not docker Desktop) (tested on v. 19.03, 20.10). 
+**3. Docker engine (not docker Desktop) (tested on v. 19.03, 20.10).**
+
 Usually, this should work: 
+
 ```
 sudo apt install docker.io
 ```
+
 or [install from binaries](https://docs.docker.com/engine/install/binaries/).
 
 See also [Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/). In particular, add your user to the ```docker``` group:
+
 ```
 sudo usermod -aG docker $USER
 ```
+
 Log out and log in before proceeding.
 
-4. **Docker-compose** (tested on v. 1.28).
+**4. Docker-compose (tested on v. 1.28).**
+
 First, remove any other ```docker-compose``` file, if present (check with ```which docker-compose```).
 Download binary file for v. 1.28.5:
+
 ```
 cd /usr/local/bin
 sudo wget https://github.com/docker/compose/releases/download/1.28.5/docker-compose-Linux-x86_64
@@ -78,9 +86,11 @@ sudo mv docker-compose-Linux-x86_64 docker-compose
 sudo chmod a+x docker-compose
 docker-compose -v
 ```
+
 ### Software Installation
 
-1. Download [**```marrtino_apps```**](https://bitbucket.org/iocchi/marrtino\_apps/) (```cohan``` branch) and [**```stage_environments```**](https://bitbucket.org/iocchi/stage_environments.git) repositories to the ```~/src``` folder and create ```~/playground``` folder:
+**1. Download [```marrtino_apps```](https://bitbucket.org/iocchi/marrtino\_apps/) (```cohan``` branch) and [```stage_environments```](https://bitbucket.org/iocchi/stage_environments.git) repositories to the ```~/src``` folder and create ```~/playground``` folder:**
+
 ```
 cd ~/src 
 git clone -b cohan https://bitbucket.org/iocchi/marrtino_apps.git
@@ -94,7 +104,7 @@ Every time you would like to get up-to-date version, enter cloned repository and
 git pull
 ```
 
-2. Add your in your **```~/.bashrc```**:
+**2. Add in your ```~/.bashrc```**:
 
 ```
 export MARRTINO_APPS_HOME=$HOME/src/marrtino_apps
@@ -102,25 +112,37 @@ export MARRTINO_PLAYGROUND=$HOME/playground
 export ROS_IP=127.0.0.1
 export ROBOT_TYPE=stage
 ```
+
 Open a new terminal (to make ```.bashrc``` changes effective).
 
-3. **Build docker images**:
+**3. Build docker images:**
 
 ```
 cd $MARRTINO_APPS_HOME/docker
 ./docker_build_cohan.bash
 ```
 
-It is fine, if there will be some errors during the ```./docker_build_cohan.bash``` execution, but if you encounter problems with further steps, then try to build ```./docker_build.bash``` first and then ```./docker_build_cohan.bash```.
+It is fine, if there are some errors during execution of the ```./docker_build_cohan.bash```, but if you encounter problems with further steps, then try to build ```./docker_build.bash``` first and ```./docker_build_cohan.bash``` $-$ after.
 
-Note: ```./docker_build_cohan.bash``` builds only the docker images needed to replicate navigaion tests on ```stage```, ```./docker_build.bash``` $-$  also other images.
+*Note*: ```./docker_build_cohan.bash``` builds only the docker images needed to replicate navigaion tests on stage, ```./docker_build.bash``` $-$  also other images.
 
-4. **Edit system configuration file**:
+**4. Edit system configuration file as in [system_config.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/system_config.yaml):**
 
 ```
 cd $MARRTINO_APPS_HOME
 cp docker/system_config_template.yaml system_config.yaml
 nano system_config.yaml 
+```
+
+If you prefer, set the ```stage``` field ```on``` instead of ```vnc```. This will use the X11 server on your host, instead of VNC through a browser.
+
+### System Start and Stop
+
+**To start the system, open the terminal, navigate to ```MARRTINO_APPS_HOME/docker```, and start the docker:**:
+
+```
+cd $MARRTINO_APPS_HOME/docker
+./start_docker.bash
 ```
 
 ## Compile and run the project
