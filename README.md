@@ -1,6 +1,5 @@
 # Enhancing Robot Reliability for Health-Care Facilities by means of Human-Aware Navigation Planning
 
-
 <h3 align="center">
   This is the repository devoted to the Master Thesis 
   
@@ -9,18 +8,119 @@
   The thesis was defended upon completion of the Master Course on Artificial Intelligence and Robotics in Faculty of Information Engineering, Informatics and Statistics of Sapienza University of Rome, Rome, Italy.
 </h3>
 
-
 ## Abstract
-With the aim of enabling robots to cooperate with humans, carry-out human-like tasks or navigate among humans we need to ensure that they are equipped with the ability to comprehend human behaviours and use the extracted knowledge for the intelligent decision-making. This ability is particularly important in the **safety-critical and human-centered environment** of health-care institutions. In the field of robotic navigation the most cutting-edge approaches to enhance robot reliability in the application domain of health-care facilities and in general pertain to **augmenting navigation system with human-aware properties**. To implement this in our work the [**Co-operative Human Aware Navigation (CoHAN) Planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner) has been integrated into [**ROS-based differential-drive robot MARRtina**](https://www.marrtino.org/home) and exhaustively challenged within various simulated contexts and scenarios (mainly, modeling the situations relevant in medical domain) to draw attention to the integrated system's benefits and identify its drawbacks or instances of poor performance while exploring the scope of system capabilities and creating a full characterization of its applicability.
 
-## Prerequisites
+With the aim of enabling robots to cooperate with humans, carry-out human-like tasks or navigate among humans we need to ensure that they are equipped with the ability to comprehend human behaviours and use the extracted knowledge for the intelligent decision-making. This ability is particularly important in the **safety-critical and human-centered environment** of health-care institutions. In the field of robotic navigation the most cutting-edge approaches to enhance robot reliability in the application domain of health-care facilities and in general pertain to **augmenting navigation system with human-aware properties**. To implement this in our work the [**Co-operative Human Aware Navigation (CoHAN) planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner) has been integrated into [**ROS-based differential-drive robot MARRtina**](https://www.marrtino.org/home) and exhaustively challenged within various simulated contexts and scenarios (mainly, modeling the situations relevant in medical domain) to draw attention to the integrated system's benefits and identify its drawbacks or instances of poor performance while exploring the scope of system capabilities and creating a full characterization of its applicability.
 
-Make sure to have ```marrtino_apps``` and ```stage_environments``` in ```$HOME/src```.
+## Install, Compile and Run the project
 
-To get up-to-date version, enter cloned repository and execute:
+### Software Description
+
+The MARRtino robot is a low-cost nevertheless fully compatible with other expensive and professional platforms ROS-based differential-drive mobile robot that is an open hardware/software project, designed for experimentation and commonly used in education and research. The software for MARRtino exists in several forms, starting from low-level source codes and ending with a ready-to-use pre-installed on a VirtualBox Virtual Machine version. The [**marrtino\_apps**](https://bitbucket.org/iocchi/marrtino\_apps/) repository (maintained by [Prof. Luca Iocchi](https://sites.google.com/a/dis.uniroma1.it/iocchi/home?authuser=0)) is a **Docker-based** MARRtino software that was used for the purposes of this thesis. It contains ROS(kinetic/melodic)-packages, representing different robot functionalities and control/visualisation modules, distributed among **Docker images** (or, as runtime instances, **Docker containers**) and interfaced with Python and other languages.
+
+The available images are:
+
+- System support:
+  - ```orazio``` (for the real robot)
+  - ```stage\_environments``` (for the ```stage``` container)
+  - ```nginx```
+  - ```devrt/xserver```
+- Operational:
+  - ```base``` (robot base)
+  - ```system```
+  - ```teleop``` (teleoperation)
+  - ```navigation``` and ```navigation-cohan```
+  - ```mapping```
+  - ```vision```
+  - ```speech``` 
+  - ```objrec``` (object recognition)
+
+In particular, the ```navigation/navigation-cohan``` and ```mapping``` components are responsible for the Navigation Stack functioning. Using nomenclature of ROS, ```mapping``` contains the Mapping module, and ```navigation``` stores the executables to perform Localisation and to move robot base along the paths, provided by the Path Planning. The Path Planning itself is represented by the variety of planning approaches. They are normally implemented as external systems and pulled from the outer repositories into inherited from ```navigation``` image. Similarly, the Co-operative Human-Aware Navigation (CoHAN) planner repository is pulled to the ```navigation-cohan``` image.
+
+The Docker containers, involved in the integration and testing of CoHAN, are the following five:
+- ```navigation```
+- ```base```
+- ```stage```
+- ```nginx```
+- ```xserver```
+
+The last two containers in the list are related to the computer setup (web server), ```base``` and ```navigation``` are the runtime instances of the ```base``` and ```navigation-cohan``` images, respectively, and ```stage``` is a simulator.
+
+### System Prerequisites
+
+1. **Linux OS**.
+
+2. **Python** and **tmux**:
+```
+sudo apt install python tmux python3-yaml
+```
+
+3. **Docker engine** (not docker Desktop) (tested on v. 19.03, 20.10). 
+Usually, this should work: 
+```
+sudo apt install docker.io
+```
+or [install from binaries](https://docs.docker.com/engine/install/binaries/).
+
+See also [Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/). In particular, add your user to the ```docker``` group:
+```
+sudo usermod -aG docker $USER
+```
+Log out and log in before proceeding.
+
+4. **Docker-compose** (tested on v. 1.28).
+First, remove any other ```docker-compose``` file, if present (check with ```which docker-compose```).
+Download binary file for v. 1.28.5:
+```
+cd /usr/local/bin
+sudo wget https://github.com/docker/compose/releases/download/1.28.5/docker-compose-Linux-x86_64
+sudo mv docker-compose-Linux-x86_64 docker-compose
+sudo chmod a+x docker-compose
+docker-compose -v
+```
+### Software Installation
+
+1. Download [**```marrtino_apps```**](https://bitbucket.org/iocchi/marrtino\_apps/) (```cohan``` branch) and [**```stage_environments```**](https://bitbucket.org/iocchi/stage_environments.git) repositories to the ```~/src``` folder and create ```~/playground``` folder:
+```
+cd ~/src 
+git clone -b cohan https://bitbucket.org/iocchi/marrtino_apps.git
+git clone https://bitbucket.org/iocchi/stage_environments.git
+mkdir ~/playground
+```
+
+Every time you would like to get up-to-date version, enter cloned repository and execute:
 
 ```
 git pull
+```
+
+2. Add your in your **```~/.bashrc```**:
+
+```
+export MARRTINO_APPS_HOME=$HOME/src/marrtino_apps
+export MARRTINO_PLAYGROUND=$HOME/playground
+export ROS_IP=127.0.0.1
+export ROBOT_TYPE=stage
+```
+Open a new terminal (to make ```.bashrc``` changes effective).
+
+3. **Build docker images**:
+
+```
+cd $MARRTINO_APPS_HOME/docker
+./docker_build_cohan.bash
+```
+
+It is fine, if there will be some errors during the ```./docker_build_cohan.bash``` execution, but if you encounter problems with further steps, then try to build ```./docker_build.bash``` first and then ```./docker_build_cohan.bash```.
+
+Note: ```./docker_build_cohan.bash``` builds only the docker images needed to replicate navigaion tests on ```stage```, ```./docker_build.bash``` $-$  also other images.
+
+4. **Edit system configuration file**:
+
+```
+cd $MARRTINO_APPS_HOME
+cp docker/system_config_template.yaml system_config.yaml
+nano system_config.yaml 
 ```
 
 ## Compile and run the project
