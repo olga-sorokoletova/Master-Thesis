@@ -9,5 +9,5 @@ initposes: [[16, 42, 270]]
 # Simulator info
 initposes: [ [41.81, 41.29, 180] ]
 
-human1: { type: 'person', pose: [ 16.40, 41.29, 0, 0 ], body: { color: "green" } }
+human1: { type: 'person', pose: [ 17.49, 41.63, 0, 0 ], body: { color: "green" } }
 

@@ -41,6 +41,6 @@ bed13by:  { gotopose: [ 16.83, 3.76, 0 ] }
 bed14: { type: 'box', size: [0.9144, 2.2352, 0.4], pose: [ 20.71, 4.26, 0, 180 ], color: "brown" }
 bed14by:  { gotopose: [ 19.52, 3.76, 0 ] }
 
-
+#human1: { type: 'person', pose: [ 6.49, 13, 0, -90 ], body: { color: "purple" } }
 human1: { type: 'person', pose: [ 6.49, 14.35, 0, -90 ], body: { color: "purple" } }
 human2: { type: 'person', pose: [ 6.49, 11.65, 0, -90 ],  body: { color: "red" } }

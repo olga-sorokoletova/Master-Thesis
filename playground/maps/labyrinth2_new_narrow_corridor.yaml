@@ -1,4 +1,4 @@
-image: labyrinth2_new.png
+image: labyrinth2_new.png # labyrinth2_new.png for CoHAN test and labyrinth2_new2.png for SMB test
 resolution: 0.05
 origin: [0.0, 0.0, 0.0]
 negate: 0
@@ -6,8 +6,11 @@ occupied_thresh: 0.65
 free_thresh: 0.2
 
 # Simulator info
-initposes: [ [18, 16.96, 180] ]
+initposes: [ [18, 16.96, 180] ] # y = 16.96 for CoHAN test and 17.74 for SMB test
 
+# Cohan test
 human1: { type: 'person', pose: [ 3.1, 16.96, 0, 0 ], body: { color: "green" } }
+# SMB test
+#human1: { type: 'person', pose: [ 3.1, 17.74, 0, 0 ], body: { color: "green" } }
 # extra human to test /human_global_plans listener
 #human2: { type: 'person', pose: [ 18, 19, 0, 180 ], body: { color: "blue" } }

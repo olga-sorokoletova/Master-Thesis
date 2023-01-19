@@ -6,7 +6,7 @@ occupied_thresh: 0.65
 free_thresh: 0.2
 
 # Simulator info
-initposes: [ [46.14, 13.8, 180] ] # y = 13.4/13.8/14.3 - bottom/middle/top side of the corridor
+initposes: [ [41.07, 13.8, 180] ] # y = 13.4/13.8/14.3 - bottom/middle/top side of the corridor
 
 # Semantic map
 # wide corridor static human cases 2 and 3 and wide corridor successful avoidance: human aside
@@ -15,3 +15,7 @@ initposes: [ [46.14, 13.8, 180] ] # y = 13.4/13.8/14.3 - bottom/middle/top side 
 #human1: { type: 'person', pose: [ 38.68, 13.69, 0, 0 ], body: { color: "green" } }
 # pillar corridor and wide corridor successful aborting
 human1: { type: 'person', pose: [ 29.74, 13.8, 0, 0 ], body: { color: "green" } }
+
+bed1: { type: 'box', size: [0.6, 1.33, 0.4], pose: [ 31.74, 14.30, 0, 90 ], color: "brown" }
+bed2: { type: 'box', size: [0.6, 1.33, 0.4], pose: [ 34.27, 14.30, 0, 90 ], color: "brown" }
+bed3: { type: 'box', size: [0.6, 1.33, 0.4], pose: [ 36.74, 14.30, 0, 90 ], color: "brown" }

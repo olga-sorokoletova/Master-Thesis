@@ -6,7 +6,7 @@ occupied_thresh: 0.65
 free_thresh: 0.2
 
 # Simulator info
-initposes: [ [5, 13, 0] ]
+initposes: [ [2, 13, 0] ]
 
 # Semantic map
 home: { gotopose: [ 3.31, 15.90, 0 ] }
@@ -39,5 +39,5 @@ bed20by:  { gotopose: [ 19.35, 3.76, 0 ] }
 
 
 human1: { type: 'person', pose: [ 7.47, 15.06, 0, 90 ], body: { color: "yellow" } }
-human2: { type: 'person', pose: [ 7.47, 9.87, 0, 90 ],  body: { color: "red" } }
+human2: { type: 'person', pose: [ 8.47, 10.41, 0, 90 ],  body: { color: "red" } }
 
