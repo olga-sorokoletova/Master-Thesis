@@ -1,8 +1,17 @@
-# Autonomous Robots as a Resource for Mass Epidemic Sustainability assisting in critical care wards
+# Enhancing Robot Reliability for Health-Care Facilities by means of Human-Aware Navigation Planning
 
-This is the repository devoted to the *Master Thesis*. 
 
-The goal is to implement robots as acting remote interface for physicians at home in smart-working mode, to perform diagnostic tasks that do not require high precision manual interactions, and therefore decreasing the workload of physically available operators in critical care wards. 
+<h3 align="center">
+  This is the repository devoted to the Master Thesis 
+  
+  on Social (Human-Aware) Navigation of Autonomous Robots assisting in Critical Care Wards as a resource for Health-Care Sustainability. 
+
+  The thesis was defended upon completion of the Master Course on Artificial Intelligence and Robotics in Faculty of Information Engineering, Informatics and Statistics of Sapienza University of Rome, Rome, Italy.
+</h3>
+
+
+## Abstract
+With the aim of enabling robots to cooperate with humans, carry-out human-like tasks or navigate among humans we need to ensure that they are equipped with the ability to comprehend human behaviours and use the extracted knowledge for the intelligent decision-making. This ability is particularly important in the **safety-critical and human-centered environment** of health-care institutions. In the field of robotic navigation the most cutting-edge approaches to enhance robot reliability in the application domain of health-care facilities and in general pertain to **augmenting navigation system with human-aware properties**. To implement this in our work the [**Co-operative Human Aware Navigation (CoHAN) Planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner) has been integrated into [**ROS-based differential-drive robot MARRtina**](https://www.marrtino.org/home) and exhaustively challenged within various simulated contexts and scenarios (mainly, modeling the situations relevant in medical domain) to draw attention to the integrated system's benefits and identify its drawbacks or instances of poor performance while exploring the scope of system capabilities and creating a full characterization of its applicability.
 
 ## Prerequisites
 
