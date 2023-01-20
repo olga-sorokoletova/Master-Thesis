@@ -329,6 +329,35 @@ rostopic echo /tracked_humans
  
 In RViz fix ```2D Pose Estimate``` and send the navigation goal using ```2D Nav Goal```. Observe the motion in both RViz and ```stage```.
 
+**4.5. Move humans in the ```stage```.**
+
+Messages to 5 topics are being published for each of the humans. For example, for the human, named in a semantic map ```human1```, 5 topics are:
+
+```
+/human1/base_pose_ground_truth
+/human1/cmd_vel
+/human1/odom
+/human1/setpose
+/human1/stage_say
+```
+
+We use mainly two approaches to human dynamics modelling: publishing to a human command velocity topic ```/cmd_vel``` or publishing to a human pose topic ```setpose```, both in the ```navigation``` container in one of free tabs, for example, in ```3:laser``` tab.
+
+In simple cases, when a linear motion (i.e. the trajectory is a straight line) is sufficient because the space is limited (e.g. in the narrow corridor) or when a circular motion with a constant angular velocity around $z$ axis satisfies the simulation goal, a direct publishing to a human command velocity topic is employed:
+
+
+```
+# linear motion of human1
+rostopic pub /human1/cmd_vel geometry_msgs/Twist  '{linear:  {x: x_val_1.0, y: 1.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+
+# circular motion of human1,...,humanN
+rostopic pub -r 100 /human1/cmd_vel geometry_msgs/Twist  '{linear:  {x: x_val_1, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: z_val_1}}' |
+... |
+rostopic pub -r 100 /humanN/cmd_vel geometry_msgs/Twist  '{linear:  {x: x_val_N, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: z_val_N}}'
+```
+
+When nonlinear human motion simulation can be helpful to better challenge the planner (e.g. in the wide corridor), special Python scripts are used. 
+
 ## Compile and run the project
 
 ### Using the Manual Launch
