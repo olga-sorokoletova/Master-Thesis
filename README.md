@@ -341,22 +341,74 @@ Messages to 5 topics are being published for each of the humans. For example, fo
 /human1/stage_say
 ```
 
-We use mainly two approaches to human dynamics modelling: publishing to a human command velocity topic ```/cmd_vel``` or publishing to a human pose topic ```setpose```, both in the ```navigation``` container in one of free tabs, for example, in ```3:laser``` tab.
+We use mainly two approaches to human dynamics modelling: 
 
-In simple cases, when a linear motion (i.e. the trajectory is a straight line) is sufficient because the space is limited (e.g. in the narrow corridor) or when a circular motion with a constant angular velocity around $z$ axis satisfies the simulation goal, a direct publishing to a human command velocity topic is employed:
+- publishing to a human command velocity topic ```/cmd_vel```,
+- publishing to a human pose topic ```setpose```.
+
+Both in the ```navigation``` container in one of free tabs, for example, in ```3:laser``` tab.
+
+Let us denote:
+
+```<x_human1> <y_human1> <a_deg_human1>``` $-$ initial coordinates of the ```human1```, 
+
+```<x_new_human1> <y_new_human1> <a_deg_new_human1>``` $-$ desired coordinates of the ```human1```,
+
+```<vx_val_human1> <wz_val_human1>``` $-$ desired linear and angular components of the command velocity of the ```human1```.
+
+
+In simple cases, when a linear motion (i.e. the trajectory is a straight line) is sufficient because the space is limited (e.g. in the narrow corridor) or when a circular motion with a constant angular velocity around $z$ axis satisfies the simulation goal, a **direct publishing to a human command velocity topic** is employed:
 
 
 ```
 # linear motion of human1
-rostopic pub /human1/cmd_vel geometry_msgs/Twist  '{linear:  {x: x_val_1.0, y: 1.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+rostopic pub /human1/cmd_vel geometry_msgs/Twist  '{linear:  {x: <vx_val_human1>, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
 
 # circular motion of human1,...,humanN
-rostopic pub -r 100 /human1/cmd_vel geometry_msgs/Twist  '{linear:  {x: x_val_1, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: z_val_1}}' |
-... |
-rostopic pub -r 100 /humanN/cmd_vel geometry_msgs/Twist  '{linear:  {x: x_val_N, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: z_val_N}}'
+rostopic pub -r 100 /human1/cmd_vel geometry_msgs/Twist  '{linear:  {x: <vx_val_human1>,y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: <wz_val_human1>}}'
+| ... |
+rostopic pub -r 100 /humanN/cmd_vel geometry_msgs/Twist  '{linear:  {x: <vx_val_humanN>, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: <wz_val_humanN>}}'
 ```
 
-When nonlinear human motion simulation can be helpful to better challenge the planner (e.g. in the wide corridor), special Python scripts are used. 
+When nonlinear human motion simulation can be helpful to better challenge the planner (e.g. in the wide corridor) or to customise the simulation, **special Python scripts** are used. 
+
+- To get the pose of the ```human1``` once: [getpose.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/getpose.py).
+
+  ```
+  python getpose.py human1
+  ```
+
+- To set the pose of the ```human1``` once: [setstagepose.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/setstagepose.py).
+
+  ```
+  python setstagepose.py human1 <x_new_human1> <y_new_human1> <a_deg_new_human1>
+  ```
+
+- To move ```human1``` continuously along ```x``` axis: [move_obstacle.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/move_obstacle.py).
+
+  ```
+  python move_obstacle.py human1 <x_human1> <y_human1> <a_deg_human1> <x_new_human1>
+  ```
+
+- To move ```human1``` coninuously during 5 timestamps by setting publishing desired velocity commands: [setcmdvel.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/setcmdvel.py).
+
+  ```
+  python setcmdvel.py human1 <vx_val_human1> <wz_val_human1> 
+  ```
+
+- To execute the routine that precomputes the ```human1``` trajectory and then continuously publishes it to a human pose topic: [movetopose.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/movetopose.py).
+
+  ```
+  python movetopose.py human1 <x_human1> <y_human1> <a_deg_human1> <x_new_human1> <y_new_human1> <a_deg_new_human1>
+  ```
+
+- To execute the script that models the situation of emergency in the Intensive Care Unit: [heart_attack_test.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/heart_attack_test.py).
+
+  ```
+  python heart_attack_test.py
+  ```
+
+  In this script an incremental publishing on human pose topic is exploited to, first, align the human orientation with the direction of the future motion and, then, move linearly along the line connecting human current and goal positions. This is done simultaneously for 8 predefined humans ```human1```,...,```human8```, and the goal position is the same for all of them (so to create a crowd in a goal vicinity) $-$ position of the ```human9```. 
 
 ## Compile and run the project
 
@@ -433,14 +485,7 @@ Display the list of topics in one of the free tabs of navigation container while
 ```
 rostopic list
 ```
-5 topics are being published for each of the humans. For example, for the human named in a semantic map as ```human1``` their names are:
-```
-/human1/base_pose_ground_truth
-/human1/cmd_vel
-/human1/odom
-/human1/setpose
-/human1/stage_say
-```
+
 To listen to a particular topic, use:
 ```
 rostopic echo /topic_name
@@ -456,32 +501,6 @@ To publish message to a topic, use publisher:
 ```
 rostopic pub /topic_name /topic_type  /message
 ```
-To move a human, publish to its ```/cmd_vel``` topic message with a new velocity. For example (use double tab to autocomplete the message structure):
-```
-rostopic pub /human1/cmd_vel geometry_msgs/Twist  '{linear:  {x: 1.0, y: 1.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
-```
-As the result, observe the ```human1``` moving forward.
-
-### 2. Using Python
-
-Use one of the free tabs of navigation container while running navigation to execute the scripts, mentioned below.
-
-2.1. To get the pose of the ```human1```:
-```
-python getpose.py human1
-```
-2.2. To set the pose of the ```human1```:
-```
-python setstagepose.py <x_new> <y_new> <a_deg_new> human1
-```
-As the result, ```human1```'s pose is changed accordingly.
-
-2.3. To move human continuously along ```x``` axis using custom script [move_obstacle.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/move_obstacle.py):
-
-```
-python move_obstacle.py human1 <x_human1> <y_human1> <a_deg_human1> <x_new_human1>
-```
-```<x_human1> <y_human1> <a_deg_human1>``` are the initial coordinates of the ``human1`` pose, and ```<x_new_human1>``` is a desired coordinate of the ```human1``` on ```x``` axis.
 
 ## Author
 - Olga Sorokoletova - 1937430
