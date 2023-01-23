@@ -462,6 +462,18 @@ For example, you can us them:
   
 - To run custom scripts:
 
+  ```
+  python compute_path_length.py
+  ```
+  
+  where [compute_path_length.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/compute_path_length.py) computes the length of the robot path using ground truth poses.
+  
+  ```
+  python record_hateb_log.py
+  ```
+  
+  where [record_hateb_log.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/record_hateb_log.py) records HATEB Local Planner's log to the text file [hateb_log.txt](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/hateb_log.txt) to be then parsed and plotted, for example, as in [plot_hateb_log.ipynb](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/plot_hateb_log.ipynb).
+
 ## Compile and run the project
 
 ### Using the Manual Launch
