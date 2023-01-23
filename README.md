@@ -409,6 +409,58 @@ When nonlinear human motion simulation can be helpful to better challenge the pl
   ```
 
   In this script an incremental publishing on human pose topic is exploited to, first, align the human orientation with the direction of the future motion and, then, move linearly along the line connecting human current and goal positions. This is done simultaneously for 8 predefined humans ```human1```,...,```human8```, and the goal position is the same for all of them (so to create a crowd in a goal vicinity) $-$ position of the ```human9```. 
+  
+**4.6. [OPTIONAL] Open as many extra tabs as needed using ```CTRL-b c```.**
+
+For example, you can us them:
+
+ - To display the list of topics or running nodes:
+
+  ```
+  # for topics
+  rostopic list
+  
+  # for nodes
+  rosnode list
+  ```
+
+- To listen to a particular topic:
+
+  ```
+  rostopic echo </topic_name>
+
+  # to read just one message
+  rostopic echo -n 1 </topic_name>
+  
+  # listening to robot command velocity
+  rostopic echo /cmd_vel
+  
+  # listening to human goal prediction
+  rostopic echo /human_goal_predict/predicted_goal
+  ```
+  
+- To know the type of the message, use:
+
+  ```
+  rostopic type </topic_name>
+  ```
+
+- To publish message to a topic, use publisher:
+
+  ```
+  rostopic pub </topic_name> <topic_type> <message>
+  ```
+  
+- To run nodes:
+
+  ```
+  rosrun <package_name> <node_name>
+  
+  # dynamic reconfigure GUI
+  rosrun rqt_reconfigure rqt_reconfigure
+  ```
+  
+- To run custom scripts:
 
 ## Compile and run the project
 
@@ -477,30 +529,6 @@ python nav.py er_cmd.nav.
 ```
 This file contains just one command: ```gotoLabel(target_location)```, where ```target_location``` can be: 1) "telecom", if status is "home", or 2) outdoors of the doctor's office if status is "hospital". 
 
-## 2. Getting and setting poses for humans in the stage 
-
-### 1. Using ROS
-
-Display the list of topics in one of the free tabs of navigation container while running navigation:
-```
-rostopic list
-```
-
-To listen to a particular topic, use:
-```
-rostopic echo /topic_name
-
-#or to read just one message
-rostopic echo -n 1 /topic_name
-```
-To know the type of the message, use:
-```
-rostopic type /topic_name
-```
-To publish message to a topic, use publisher:
-```
-rostopic pub /topic_name /topic_type  /message
-```
 
 ## Author
 - Olga Sorokoletova - 1937430
