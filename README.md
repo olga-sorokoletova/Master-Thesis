@@ -466,13 +466,13 @@ For example, you can us them:
   python compute_path_length.py
   ```
   
-  where [compute_path_length.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/compute_path_length.py) computes the length of the robot path using ground truth poses.
+  where [compute_path_length.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/compute_path_length.py) computes the length of the robot's path using ground truth poses (**Path Length** metric in Qunatitative Analysis).
   
   ```
   python record_hateb_log.py
   ```
   
-  where [record_hateb_log.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/record_hateb_log.py) records HATEB Local Planner's log to the text file [hateb_log.txt](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/hateb_log.txt) to be then parsed and plotted, for example, as in [plot_hateb_log.ipynb](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/plot_hateb_log.ipynb).
+  where [record_hateb_log.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/record_hateb_log.py) records HATEB Local Planner's log (contains information about the robot **Velocity**, **Minimum Human-Robot Distance** and **Planning Mode**) to the text file [hateb_log.txt](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/hateb_log.txt) to be then parsed and plotted, for example, as in [plot_hateb_log.ipynb](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/plot_hateb_log.ipynb).
 
 ## Compile and run the project
 
