@@ -50,15 +50,15 @@ The last two containers in the list are related to the computer setup (web serve
 
 ### System Prerequisites
 
-#### 1. Linux OS.
+**1. Linux OS.**
 
-#### 2. Python and tmux:
+**2. Python and tmux:**
 
 ```
 sudo apt install python tmux python3-yaml
 ```
 
-#### 3. Docker engine (not docker Desktop) (tested on v. 19.03, 20.10).
+**3. Docker engine (not docker Desktop) (tested on v. 19.03, 20.10).**
 
 Usually, this should work: 
 
@@ -76,7 +76,7 @@ sudo usermod -aG docker $USER
 
 Log out and log in before proceeding.
 
-#### 4. Docker-compose (tested on v. 1.28).
+**4. Docker-compose (tested on v. 1.28).**
 
 First, remove any other ```docker-compose``` file, if present (check with ```which docker-compose```).
 Download binary file for v. 1.28.5:
@@ -92,7 +92,7 @@ docker-compose -v
 
 ### Software Installation
 
-#### 1. Download [```marrtino_apps```](https://bitbucket.org/iocchi/marrtino\_apps/) (```cohan``` branch) and [```stage_environments```](https://bitbucket.org/iocchi/stage_environments.git) repositories to the ```~/src``` folder and create ```~/playground``` folder:
+**1. Download [```marrtino_apps```](https://bitbucket.org/iocchi/marrtino\_apps/) (```cohan``` branch) and [```stage_environments```](https://bitbucket.org/iocchi/stage_environments.git) repositories to the ```~/src``` folder and create ```~/playground``` folder:**
 
 ```
 cd ~/src 
@@ -107,7 +107,7 @@ Every time you would like to get up-to-date version, enter cloned repository and
 git pull
 ```
 
-#### 2. Add in your ```~/.bashrc```:
+**2. Add in your ```~/.bashrc```:**
 
 ```
 export MARRTINO_APPS_HOME=$HOME/src/marrtino_apps
@@ -118,7 +118,7 @@ export ROBOT_TYPE=stage
 
 Open a new terminal (to make ```.bashrc``` changes effective).
 
-#### 3. Build docker images:
+**3. Build Docker images:**
 
 ```
 cd $MARRTINO_APPS_HOME/docker
@@ -129,7 +129,7 @@ It is fine, if there are some errors during execution of the ```./docker_build_c
 
 *Note*: ```./docker_build_cohan.bash``` builds only the docker images needed to replicate navigaion tests on stage, ```./docker_build.bash``` $-$  also other images.
 
-#### 4. Edit system configuration file as in [system_config.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/system_config.yaml):
+**4. Edit system configuration file as in [system_config.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/system_config.yaml):**
 
 ```
 cd $MARRTINO_APPS_HOME
@@ -176,7 +176,9 @@ cd $MARRTINO_APPS_HOME/docker
 
 #### 1. Start the docker.
 
-#### 2. If in ```system_config.yaml``` the ```vnc``` is chosen, open ```http://localhost:3000``` in browser, otherwise, open ```http://localhost```, follow ```Bringup``` link and press ```CONNECT```.
+#### 2. Connect.
+
+If in ```system_config.yaml``` the ```vnc``` is chosen, open ```http://localhost:3000``` in browser, otherwise, open ```http://localhost```, follow ```Bringup``` link and press ```CONNECT```.
  
 #### 3. Run a stage environment. 
 
@@ -263,7 +265,7 @@ E.g. for ```ICU_visibility_open_space``` map in ```stage``` simulator, you can u
 python startloc.py ICU_visibility_open_space
 ```
 
-**4.2. Start the human tracking:**
+##### 4.2. Start the Human Tracking:
 
 [```stage/humans_bridge.py```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/stage/humans_bridge.py) is responsible execitable.
 
@@ -294,7 +296,7 @@ To check that ```/tracked_humans``` topic is being published, run from another t
 rostopic echo /tracked_humans
 ```
 
-**4.3. Start the ```move_base``` node:**
+##### 4.3. Start the ```move_base``` node:
 
  - From host OS:
     
@@ -312,7 +314,7 @@ rostopic echo /tracked_humans
 ```cohan_nav.launch``` is an adapted ```move_base``` node for [**Co-operative Human Aware Navigation (CoHAN) Planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner), ```move_base.launch``` is referred in quantitative analysis as Simple Move Base (SMB). You can also use other ```launch``` files here.
 
 
-**4.4. Start visualisation in RViz:**
+##### 4.4. Start visualisation in RViz:
 
  - From host OS:
     
@@ -329,7 +331,7 @@ rostopic echo /tracked_humans
  
 In RViz fix ```2D Pose Estimate``` and send the navigation goal using ```2D Nav Goal```. Observe the motion in both RViz and ```stage```.
 
-**4.5. Move humans in the ```stage```.**
+##### 4.5. Move humans in the ```stage```.
 
 Messages to 5 topics are being published for each of the humans. For example, for the human, named in a semantic map ```human1```, 5 topics are:
 
@@ -410,7 +412,7 @@ When nonlinear human motion simulation can be helpful to better challenge the pl
 
   In this script an incremental publishing on human pose topic is exploited to, first, align the human orientation with the direction of the future motion and, then, move linearly along the line connecting human current and goal positions. This is done simultaneously for 8 predefined humans ```human1```,...,```human8```, and the goal position is the same for all of them (so to create a crowd in a goal vicinity) $-$ position of the ```human9```. 
   
-**4.6. [OPTIONAL] Open as many extra tabs as needed using ```CTRL-b c```.**
+##### 4.6. [OPTIONAL] Open as many extra tabs as needed using ```CTRL-b c```.
 
 For example, you can us them:
 
@@ -476,6 +478,63 @@ For example, you can us them:
 
 ---
 
+### Run Experiment
+
+**1. If experiment includes dynamic humans, activate the Human Path Prediction service.**
+
+In the [hateb_local_planner_params.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/config/stage_cohan/hateb_local_planner_params.yaml) configuration file, set:
+
+```
+# to activate PredictBehind
+use_external_prediction: [True | False]
+predict_human_behind_robot: True 
+predict_human_goal: False 
+
+# to activate PredictGoal
+use_external_prediction: [True | False]
+predict_human_behind_robot: False
+predict_human_goal: True
+
+# to disable DualBand
+use_external_prediction: False
+predict_human_behind_robot: False
+predict_human_goal: False
+```
+
+**2. Launch the Navigation Stack with desired ```<map_name>```, ```<x>```, ```<y>```, ```<a_deg>``` and ```<nh>```.**
+
+*Note*: If ```PredictGoal``` is active, before the start of localization, manually edit script [predict_goal.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/predict_goal.py) to provide to the system a set of possible goals (lists ```goals_x``` and ```goals_y```), correspondingly to your map:
+
+```
+# from inside the navigation container
+cd ../../CoHAN_Planner/human_path_prediction/scripts
+nano predict_goal.py
+```
+
+**3. Pause the ```stage``` simulator and, if experiment, includes dynamic humans, execute human motion.** 
+
+**4. Send the desired ```2D Nav Goal``` in RViz, resume the ```stage``` and observe the result.**
+
+---
+
+### Restart Navigation
+
+If the experiment has completed and you would like to start another experiment with different parameters or the robot got stuck and sending a new navigation goal/relocalizing it in the ```stage``` is not responding, you need to restart the navigation:
+
+**1. In the ```stage``` container run:** 
+
+```
+# run it twice because running it once doesn't kill all the nodes (e.g. /amcl, /rosout)
+rosrun stage_environments quit.sh
+```
+
+**2. In the ```navigation``` container in ```0:loc``` tab press ```CTRL c``` to shutdown the ```amcl-1``` process.** 
+
+The processes in other tabs must stop automatically. 
+
+**3. Run a new experiment.**
+
+
 ## Compile and run the project
 
 ### Using the Manual Launch
@@ -503,6 +562,8 @@ To stop the modules inside the containers (but not the containers):
 ```
 python3 autostart.py ER_start.yaml --kill
 ```
+
+
 
 ## PROGRAMMING MARRTINO
 
