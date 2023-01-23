@@ -439,13 +439,13 @@ For example, you can us them:
   rostopic echo /human_goal_predict/predicted_goal
   ```
   
-- To know the type of the message, use:
+- To know the type of the message:
 
   ```
   rostopic type </topic_name>
   ```
 
-- To publish message to a topic, use publisher:
+- To publish message to a topic:
 
   ```
   rostopic pub </topic_name> <topic_type> <message>
