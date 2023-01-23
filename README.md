@@ -50,7 +50,7 @@ The last two containers in the list are related to the computer setup (web serve
 
 ### System Prerequisites
 
-**1. Linux OS.**
+#### 1. Linux OS.
 
 **2. Python and tmux**:
 
@@ -473,6 +473,8 @@ For example, you can us them:
   ```
   
   where [record_hateb_log.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/record_hateb_log.py) records HATEB Local Planner's log (contains information about the robot **Velocity**, **Minimum Human-Robot Distance** and **Planning Mode**) to the text file [hateb_log.txt](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/hateb_log.txt) to be then parsed and plotted, for example, as in [plot_hateb_log.ipynb](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/plot_hateb_log.ipynb).
+
+---
 
 ## Compile and run the project
 
