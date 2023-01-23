@@ -22,7 +22,7 @@ The available images are:
 
 - System support:
   - ```orazio``` (for the real robot)
-  - ```stage\_environments``` (for the ```stage``` container)
+  - ```stage_environments``` (for the ```stage``` container)
   - ```nginx```
   - ```devrt/xserver```
 - Operational:
