@@ -15,7 +15,7 @@ def main():
         height, width, layers = img.shape
         size = (width, height)
         img_array.append(img)
-        os.remove(filename)
+        #os.remove(filename) #uncommenting will remove frames after conversion
 
     # re-creating frames as a video in '.mp4' format
     out = cv2.VideoWriter('converted_video.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 2, size)
