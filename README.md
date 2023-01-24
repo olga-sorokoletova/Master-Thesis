@@ -620,14 +620,28 @@ cd $MARRTINO_APPS_HOME/docker
 
 ```
 cd ../start
-python3 autostart.py <autostart_script_name>.yaml
+python autostart.py <autostart_script_name>.yaml
 ```
 
-To stop the modules inside the containers (but not the containers):
+For example, you can try to launch already created for [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new.yaml) map autostart script [ER_start.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/start/ER_start.yaml) (configured to use ```move_base``` planner):
+
+```
+python autostart.py ER_start.yaml
+```
+
+**3. To stop the modules inside the containers (but not the containers):**
 
 ```
 python3 autostart.py <autostart_script_name>.yaml --kill
 ```
+
+**4. To quit everything:**
+
+```
+cd $MARRTINO_APPS_HOME/docker
+stop_docker.bash
+```
+
 
 ## Semantic navigation 
 
