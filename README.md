@@ -26,7 +26,7 @@ With the aim of enabling robots to cooperate with humans, carry-out human-like t
 
 ### Software Description
 
-The MARRtino robot is a low-cost nevertheless fully compatible with other expensive and professional platforms ROS-based differential-drive mobile robot that is an open hardware/software project, designed for experimentation and commonly used in education and research. The software for MARRtino exists in several forms, starting from low-level source codes and ending with a ready-to-use pre-installed on a VirtualBox Virtual Machine version. The [**marrtino\_apps**](https://bitbucket.org/iocchi/marrtino\_apps/) repository (maintained by [Prof. Luca Iocchi](https://sites.google.com/a/dis.uniroma1.it/iocchi/home?authuser=0)) is a **Docker-based** MARRtino software that was used for the purposes of this thesis. It contains ROS(kinetic/melodic)-packages, representing different robot functionalities and control/visualisation modules, distributed among **Docker images** (or, as runtime instances, **Docker containers**) and interfaced with Python and other languages.
+The MARRtino robot is a low-cost nevertheless fully compatible with other expensive and professional platforms ROS-based differential-drive mobile robot that is an open hardware/software project, designed for experimentation and commonly used in education and research. The software for MARRtino exists in several forms, starting from low-level source codes and ending with a ready-to-use pre-installed on a VirtualBox Virtual Machine version. The [**marrtino\_apps**](https://bitbucket.org/iocchi/marrtino\_apps/) repository is a **Docker-based** MARRtino software that was used for the purposes of this thesis. It contains ROS(kinetic/melodic)-packages, representing different robot functionalities and control/visualisation modules, distributed among **Docker images** (or, as runtime instances, **Docker containers**) and interfaced with Python and other languages.
 
 The available images are:
 
@@ -554,22 +554,22 @@ The **Qualitative Results** can be found in:
 
 The following semantic maps have been mainly involved in experimentation:
 - **Visibility Test:**
-  - A human in open space: [ICU_visibility_open_space.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_open_space.yaml)
-  - A human and a wall: [ICU_visibility_wall.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_wall.yaml)
-  - Two humans in open space: [ICU_visibility_open_space.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_open_space.yaml)
+  - A human in open space: [```ICU_visibility_open_space.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_open_space.yaml)
+  - A human and a wall: [```ICU_visibility_wall.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_wall.yaml)
+  - Two humans in open space: [```ICU_visibility_open_space.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_open_space.yaml)
 - **Door Crossing:** 
-  - Wide Doorway: [ER_planfloor_new_door_crossing.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_door_crossing.yaml)
-  - Narrow Doorway: [ER_planfloor_new_door_crossing_narrow_doorway.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_door_crossing_narrow_doorway.yaml)
-  - Bed Approach: [ICU2.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU2.yaml)
+  - Wide Doorway: [```ER_planfloor_new_door_crossing.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_door_crossing.yaml)
+  - Narrow Doorway: [```ER_planfloor_new_door_crossing_narrow_doorway.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_door_crossing_narrow_doorway.yaml)
+  - Bed Approach: [```ICU2.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU2.yaml)
 - **Narrow Corridor:** 
-  - A "never stopping human": [labyrinth2_new_narrow_corridor.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/labyrinth2_new_narrow_corridor.yaml)
-  - A "move-and-stop human": [labyrinth2_new_narrow_corridor.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/labyrinth2_new_narrow_corridor.yaml)
+  - A "never stopping human": [```labyrinth2_new_narrow_corridor.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/labyrinth2_new_narrow_corridor.yaml)
+  - A "move-and-stop human": [```labyrinth2_new_narrow_corridor.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/labyrinth2_new_narrow_corridor.yaml)
 - **Wide Corridor:** 
-  - Free Corridor: [ER_planfloor_new_wide_corridor.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_wide_corridor.yaml), [dis_underground_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/dis_underground_new.yaml)
-  - Cluttered Corridor: [ER_planfloor_new_cluttered_corridor.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_cluttered_corridor.yaml)
+  - Free Corridor: [```ER_planfloor_new_wide_corridor.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_wide_corridor.yaml), [dis_underground_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/dis_underground_new.yaml)
+  - Cluttered Corridor: [```ER_planfloor_new_cluttered_corridor.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_cluttered_corridor.yaml)
 - **Crowded Scenario:** 
-  - Free Space Crowd: [ICU.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU.yaml)
-  - Emergency Situation: [ICU_heart_attack.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_heart_attack.yaml)
+  - Free Space Crowd: [```ICU.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU.yaml)
+  - Emergency Situation: [```ICU_heart_attack.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_heart_attack.yaml)
   
 ## Extra
 
@@ -623,7 +623,7 @@ cd ../start
 python autostart.py <autostart_script_name>.yaml
 ```
 
-For example, you can try to launch already created for [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new.yaml) map autostart script [ER_start.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/start/ER_start.yaml) (configured to use ```move_base``` planner):
+For example, you can try to launch already created for [```ER_planfloor_new.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new.yaml) map autostart script [```ER_start.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/start/ER_start.yaml) (configured to use ```move_base``` planner):
 
 ```
 python autostart.py ER_start.yaml
@@ -642,44 +642,53 @@ cd $MARRTINO_APPS_HOME/docker
 stop_docker.bash
 ```
 
+### Semantic Navigation 
 
-## Semantic navigation 
+Other scripts in [**marrtino\_apps**](https://bitbucket.org/iocchi/marrtino\_apps/), complemented with custom workarouns, stored in this repository, allow to perform Semantic Navigation with ```move_base```.
 
-### 1. The semantic maps:  for the Emergency Department floor - [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new.yaml), for the ICU (Intensive Care Unit) - [ICU.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU.yaml), [ICU2.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU2.yaml) and [sample_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/sample_new.yaml).
+Example:
 
-Semantic information:
+**1. Consider the semantic map of the Emergency Department floor - [```ER_planfloor_new.yaml```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new.yaml).**
+
+Semantic information in this map:
 - **doors**, **indoors** and **outdoors** for the 4 top-right rooms in the map = assumed offices for 4 doctors,
 - **home** = assumed location of the charging station, 
 - **beds** in the corridors (since it's a property of the ED), implemented as boxes,
 - **telecom** = assumed room where telecommunication with a physician at home can be performed,
 - 6 categories of **people** inspired by the map from [here](https://kierantimberlake.com/updates/report-from-the-studio-mapping-jefferson-hospitals-emergency-department/).
 
-### 2. Prototypic database: [providers.csv](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/providers.csv).
+**2. Create a prototypic database, for example: [```providers.csv```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/providers.csv).**
 It has three fields:
 - **name** of the doctor (for now, they are just "provider1", ..., "provider4"),
 - **office** of the doctor ("1",..."4" in a correspondence to 4 top-right rooms in the map),
 - **status** of the doctor ("home" = doctor is available in a smart-working mode today, "hospital" = doctor is working in the hospital, "NA" - doctor is not available)
 
-### 3. Script:  [create_nav_cmd.py](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/create_nav_cmd.py).
-This script is executed outside the containers, and the command to execute this script is: 
+**3. Use script  [```create_nav_cmd.py```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/create_nav_cmd.py):** 
 
 ```
 cd ~/playground/
-python3 create_nav_cmd.py "provider1"
-
+python create_nav_cmd.py "provider1"
 ```
+
 where instead of ```"provider1"``` can be any name of the doctor who is present in the database.
 
 It checks what is the status of the requested doctor, and:
 - if he is not available => simply informs,
-- otherwise => creates a file [```er_cmd.nav```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/er_cmd.nav) inside the ```marrtino_apps/navigation``` folder to be executed as:
+- otherwise => creates a file [```er_cmd.nav```](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/navigation/er_cmd.nav) inside the ```navigation``` container to be executed as:
 
 ```
 python nav.py er_cmd.nav. 
-
 ```
+
 This file contains just one command: ```gotoLabel(target_location)```, where ```target_location``` can be: 1) "telecom", if status is "home", or 2) outdoors of the doctor's office if status is "hospital". 
 
+---
 
 ## Author
-- Olga Sorokoletova - 1937430
+- [**Olga Sorokoletova**](https://www.linkedin.com/in/olga-sorokoletova-880233237/).
+- Supported by:
+  - [**Prof. Christian Napoli**](https://sites.google.com/diag.uniroma1.it/napoli/home?authuser=0);
+  - [**Prof. Luca Iocchi**](https://sites.google.com/a/dis.uniroma1.it/iocchi/home?authuser=0).
+- In collaboration with:
+  - On the side of CoHAN system testing and improvement $-$ [LAAS-CNRS resarch institute](https://www.laas.fr/public/en) ([**Prof. Rachid Alami**](https://homepages.laas.fr/rachid/drupal/node/11) and [**PhD. Phani Teja Singamaneni**](https://scholar.google.co.in/citations?user=UsDuS10AAAAJ&hl=en));
+  - On the side of validation with experts of domain $-$ [Azienda Ospedaliera Universitaria Sant'Andrea](https://www-ospedalesantandrea-it.translate.goog/?_x_tr_sl=it&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc) (**Dr. Samuele Russo**).
