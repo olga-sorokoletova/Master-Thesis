@@ -15,7 +15,7 @@ With the aim of enabling robots to cooperate with humans, carry-out human-like t
 ## Demo
 
 <p align="center">
-  <img src="./qualitative results/videos/door crossing wide doorway.gif" width="362" height="210"/>  <img src="./qualitative results/videos/crowded scenario free space crowd goal 2 - goal 3.gif" width="270" height="210"/>   <img src="./qualitative results/videos/door crossing bed approach.gif" width="334" height="210"/>   <img src="./qualitative results/videos/narrow corridor a move-and-stop human.gif" width="468" height="188"/>  <img src="./qualitative results/videos/crowded scenario emergency situaton no safe spot found.gif" width="270" height="188"/> <img src="./qualitative results/videos/wide corridor free corridor.gif" width="344" height="200"/>   <img src="./qualitative results/videos/wide corridor cluttered corridor.gif" width="272" height="200"/> 
+  <img src="./qualitative results/videos/door crossing wide doorway.gif" width="362" height="200"/>  <img src="./qualitative results/videos/crowded scenario free space crowd goal 2 - goal 3.gif" width="270" height="200"/>   <img src="./qualitative results/videos/door crossing bed approach.gif" width="334" height="200"/>   <img src="./qualitative results/videos/narrow corridor a move-and-stop human.gif" width="468" height="200"/>  <img src="./qualitative results/videos/crowded scenario emergency situaton no safe spot found.gif" width="270" height="200"/> <img src="./qualitative results/videos/wide corridor free corridor.gif" width="344" height="200"/>   <img src="./qualitative results/videos/wide corridor cluttered corridor.gif" width="272" height="200"/> 
 </p>
 
 ## Thesis PDF
