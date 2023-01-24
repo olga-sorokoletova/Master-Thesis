@@ -12,6 +12,10 @@
 
 With the aim of enabling robots to cooperate with humans, carry-out human-like tasks or navigate among humans we need to ensure that they are equipped with the ability to comprehend human behaviours and use the extracted knowledge for the intelligent decision-making. This ability is particularly important in the **safety-critical and human-centered environment** of health-care institutions. In the field of robotic navigation the most cutting-edge approaches to enhance robot reliability in the application domain of health-care facilities and in general pertain to **augmenting navigation system with human-aware properties**. To implement this in our work the [**Co-operative Human Aware Navigation (CoHAN) planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner) has been integrated into [**ROS-based differential-drive robot MARRtina**](https://www.marrtino.org/home) and exhaustively challenged within various simulated contexts and scenarios (mainly, modeling the situations relevant in medical domain) to draw attention to the integrated system's benefits and identify its drawbacks or instances of poor performance while exploring the scope of system capabilities and creating a full characterization of its applicability.
 
+## Thesis PDF
+
+[**Enhancing Robot Reliability for Health-Care Facilities by means of Human-Aware Navigation Planning**](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/master_thesis_olga_sorokoletova_enhancing_robot_reliability_for_health_care_facilities_by_means_of_human_aware_navigation_planning.pdf).
+
 ## Install, Compile and Run the project
 
 ### Software Description
@@ -534,7 +538,32 @@ The processes in other tabs must stop automatically.
 
 **3. Run a new experiment.**
 
+## Experiments
 
+The experiments that have been conducted to create a complete characterisation of the integrated system and assert enhancement of the robot reliability by means of a chosen Human-Aware Navigation Planning approach are described in the corresponding chapter of the [thesis](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/master_thesis_olga_sorokoletova_enhancing_robot_reliability_for_health_care_facilities_by_means_of_human_aware_navigation_planning.pdf). First, the experimental setup is explaind. Then, the results in various simulated human-robot contexts are presented and thoroughly analyzed qualitatively and quantitatively. Finally, a short statistical analysis of the results of the human evaluation (by experts of health-care application domain) of acceptability and usability of the system in a real environment is provided.
+
+The Qualitative Results can be found in:
+1. [qualitative results/images](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/qualitative%20results/images)
+
+The following semantic maps have been mainly involved in experimentation:
+- **Visibility Test:**
+  - A human in open space: [ICU_visibility_open_space.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_open_space.yaml)
+  - A human and a wall: [ICU_visibility_wall.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_wall.yaml)
+  - Two humans in open space: [ICU_visibility_open_space.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_visibility_open_space.yaml)
+- **Door Crossing:** 
+  - Wide Doorway: [ER_planfloor_new_door_crossing.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_door_crossing.yaml)
+  - Narrow Doorway: [ER_planfloor_new_door_crossing_narrow_doorway.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_door_crossing_narrow_doorway.yaml)
+  - Bed Approach: [ICU2.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU2.yaml)
+- **Narrow Corridor:** 
+  - A "never stopping human": [labyrinth2_new_narrow_corridor.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/labyrinth2_new_narrow_corridor.yaml)
+  - A "move-and-stop human": [labyrinth2_new_narrow_corridor.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/labyrinth2_new_narrow_corridor.yaml)
+- **Wide Corridor:** 
+  - Free Corridor: [ER_planfloor_new_wide_corridor.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_wide_corridor.yaml), [dis_underground_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/dis_underground_new.yaml)
+  - Cluttered Corridor: [ER_planfloor_new_cluttered_corridor.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new_cluttered_corridor.yaml)
+- **Crowded Scenario:** 
+  - Free Space Crowd: [ICU.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU.yaml)
+  - Emergency Situation: [ICU_heart_attack.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_heart_attack.yaml)
+  
 ## Compile and run the project
 
 ### Using the Manual Launch
@@ -562,7 +591,6 @@ To stop the modules inside the containers (but not the containers):
 ```
 python3 autostart.py ER_start.yaml --kill
 ```
-
 
 
 ## PROGRAMMING MARRTINO
