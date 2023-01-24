@@ -12,6 +12,12 @@
 
 With the aim of enabling robots to cooperate with humans, carry-out human-like tasks or navigate among humans we need to ensure that they are equipped with the ability to comprehend human behaviours and use the extracted knowledge for the intelligent decision-making. This ability is particularly important in the **safety-critical and human-centered environment** of health-care institutions. In the field of robotic navigation the most cutting-edge approaches to enhance robot reliability in the application domain of health-care facilities and in general pertain to **augmenting navigation system with human-aware properties**. To implement this in our work the [**Co-operative Human Aware Navigation (CoHAN) planner**](https://github.com/sphanit/CoHAN_Planner#co-operative-human-aware-navigation-cohan-planner) has been integrated into [**ROS-based differential-drive robot MARRtina**](https://www.marrtino.org/home) and exhaustively challenged within various simulated contexts and scenarios (mainly, modeling the situations relevant in medical domain) to draw attention to the integrated system's benefits and identify its drawbacks or instances of poor performance while exploring the scope of system capabilities and creating a full characterization of its applicability.
 
+## Demo
+
+<p align="center">
+  <img src="./qualitative results/videos/door crossing wide doorway.gif" width="362" height="210"/>  <img src="./qualitative results/videos/crowded scenario free space crowd goal 2 - goal 3.gif" width="270" height="210"/>   <img src="./qualitative results/videos/door crossing bed approach.gif" width="334" height="210"/>   <img src="./qualitative results/videos/narrow corridor a move-and-stop human.gif" width="468" height="188"/>  <img src="./qualitative results/videos/crowded scenario emergency situaton no safe spot found.gif" width="270" height="188"/> <img src="./qualitative results/videos/wide corridor free corridor.gif" width="344" height="200"/>   <img src="./qualitative results/videos/wide corridor cluttered corridor.gif" width="272" height="200"/> 
+</p>
+
 ## Thesis PDF
 
 [**Enhancing Robot Reliability for Health-Care Facilities by means of Human-Aware Navigation Planning**](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/master_thesis_olga_sorokoletova_enhancing_robot_reliability_for_health_care_facilities_by_means_of_human_aware_navigation_planning.pdf).
@@ -540,10 +546,11 @@ The processes in other tabs must stop automatically.
 
 ## Experiments
 
-The experiments that have been conducted to create a complete characterisation of the integrated system and assert enhancement of the robot reliability by means of a chosen Human-Aware Navigation Planning approach are described in the corresponding chapter of the [thesis](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/master_thesis_olga_sorokoletova_enhancing_robot_reliability_for_health_care_facilities_by_means_of_human_aware_navigation_planning.pdf). First, the experimental setup is explaind. Then, the results in various simulated human-robot contexts are presented and thoroughly analyzed qualitatively and quantitatively. Finally, a short statistical analysis of the results of the human evaluation (by experts of health-care application domain) of acceptability and usability of the system in a real environment is provided.
+The experiments that have been conducted to create a complete characterisation of the integrated system and assert enhancement of the robot reliability by means of a chosen Human-Aware Navigation Planning approach are described in the corresponding chapter of the [**thesis**](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/master_thesis_olga_sorokoletova_enhancing_robot_reliability_for_health_care_facilities_by_means_of_human_aware_navigation_planning.pdf). First, the experimental setup is explaind. Then, the results in various simulated human-robot contexts are presented and thoroughly analyzed qualitatively and quantitatively. Finally, a short statistical analysis of the results of the human evaluation (by experts of health-care application domain) of acceptability and usability of the system in a real environment is provided.
 
-The Qualitative Results can be found in:
-1. [qualitative results/images](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/qualitative%20results/images)
+The **Qualitative Results** can be found in:
+1. [**qualitative results/images**](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/qualitative%20results/images),
+2. [**qualitative results/videos**](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/qualitative%20results/videos).
 
 The following semantic maps have been mainly involved in experimentation:
 - **Visibility Test:**
