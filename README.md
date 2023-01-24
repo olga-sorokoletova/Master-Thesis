@@ -15,7 +15,7 @@ With the aim of enabling robots to cooperate with humans, carry-out human-like t
 ## Demo
 
 <p align="center">
-  <img src="./qualitative results/videos/door crossing wide doorway.gif" width="362" height="200"/>  <img src="./qualitative results/videos/crowded scenario free space crowd goal 2 - goal 3.gif" width="270" height="200"/>   <img src="./qualitative results/videos/door crossing bed approach.gif" width="334" height="200"/>   <img src="./qualitative results/videos/narrow corridor a move-and-stop human.gif" width="468" height="200"/>  <img src="./qualitative results/videos/crowded scenario emergency situaton no safe spot found.gif" width="270" height="200"/> <img src="./qualitative results/videos/wide corridor free corridor.gif" width="344" height="200"/>   <img src="./qualitative results/videos/wide corridor cluttered corridor.gif" width="272" height="200"/> 
+  <img src="./qualitative results/videos/door crossing wide doorway.gif" width="362" height="200"/>  <img src="./qualitative results/videos/crowded scenario free space crowd goal 2 - goal 3.gif" width="270" height="200"/>   <img src="./qualitative results/videos/door crossing bed approach.gif" width="334" height="200"/>   <img src="./qualitative results/videos/narrow corridor a move-and-stop human.gif" width="468" height="200"/>  <img src="./qualitative results/videos/crowded scenario emergency situation no safe spot found.gif" width="270" height="200"/> <img src="./qualitative results/videos/wide corridor free corridor.gif" width="344" height="200"/>   <img src="./qualitative results/videos/wide corridor cluttered corridor.gif" width="272" height="200"/> 
 </p>
 
 ## Thesis PDF
@@ -571,38 +571,65 @@ The following semantic maps have been mainly involved in experimentation:
   - Free Space Crowd: [ICU.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU.yaml)
   - Emergency Situation: [ICU_heart_attack.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU_heart_attack.yaml)
   
-## Compile and run the project
+## Extra
 
-### Using the Manual Launch
+### Autostart Scripts
 
-### Using the Autostart Scripts
+One could want to use autoscripts to speed up the start of the modules. To create an autoscript for a certain map, take care of map ```.yaml```, ```.png``` and ```include``` folder to be present in the ```$HOME/playground/maps```.
 
-**1. The same as before: open terminal, navigate to ```MARRTINO_APPS_HOME/docker```, and start the docker:**
+Create an autostart script:
+
+```
+cd $MARRTINO_APPS_HOME/start
+cp autostart_template.yaml <autostart_script_name>.yaml
+```
+
+Edit autostart script accordingly to desired setup:
+
+```
+nano <autostart_script_name>.yaml
+```
+
+```
+simulator:
+  stage: on
+  mapname: <map_name>
+  mapdir: default
+  robottype: marrtino
+  nrobots: 1
+
+functions:
+  localization: on
+  mapname: <map_name>
+  mapdir: default
+  initpose: 0 0 0       # <x> <y> <a_deg>
+  navigation: move_base # off | gbn | move_base | move_base_gbn | cohan
+  navigation_rviz: on
+```
+
+The steps above are needed only once. Then every time you want to use autostart:
+
+**1. The same as before: open terminal, navigate to ```$MARRTINO_APPS_HOME/docker```, and start the docker:**
 
 ```
 cd $MARRTINO_APPS_HOME/docker
 ./start_docker.bash
 ```
 
-**2. Now navigate to the ```start``` folder and launch authomatic start:**
-
+**2. Navigate to the ```start``` container and launch an authomatic start:**
 
 ```
 cd ../start
-python3 autostart.py ER_start.yaml
+python3 autostart.py <autostart_script_name>.yaml
 ```
-Take care of map ```.yaml```, ```.png``` and ```include``` folder be present in the ```$HOME/playground/maps```.
 
 To stop the modules inside the containers (but not the containers):
 
 ```
-python3 autostart.py ER_start.yaml --kill
+python3 autostart.py <autostart_script_name>.yaml --kill
 ```
 
-
-## PROGRAMMING MARRTINO
-
-## 1. Semantic navigation 
+## Semantic navigation 
 
 ### 1. The semantic maps:  for the Emergency Department floor - [ER_planfloor_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ER_planfloor_new.yaml), for the ICU (Intensive Care Unit) - [ICU.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU.yaml), [ICU2.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/ICU2.yaml) and [sample_new.yaml](https://github.com/olga-sorokoletova/Master-Thesis/blob/main/playground/maps/sample_new.yaml).
 
