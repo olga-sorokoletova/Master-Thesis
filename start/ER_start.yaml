@@ -1,0 +1,29 @@
+simulator:
+  stage: vnc
+  mapname: ER_planfloor_new
+  mapdir: default
+  robottype: marrtino
+  nrobots: 1
+
+devices:
+  robot: off
+  joystick: off         # off | 2wd | 4wd | keyboard
+  laser: off            # off | hokuyo | rplidar
+  camera: off           # off | usbcam | astra | xtion
+
+
+functions:
+  localization: on
+  mapname: ER_plafloor_new
+  mapdir: default
+  initpose: 0 0 0       # x y th_deg
+  navigation: move_base # off | gbn | move_base | move_base_gbn
+  navigation_rviz: on
+  mapping: off          # off | gmapping | srrg_mapper
+  mapping_rviz: off
+  audioserver: off
+  videoserver: off
+  apriltags: off
+  objrec: off
+  social: off
+
